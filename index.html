@@ -81,14 +81,21 @@
     
     <script>
         const domain = window.location.hostname;
-        const hostName = domain === "localhost" || domain === "127.0.0.1" ? "example.com" : domain;
-        const [name, ext] = hostName.split('.');
+        let hostName = domain === "localhost" || domain === "127.0.0.1" ? "example.com" : domain;
+        
+        if (hostName.startsWith('www.')) {
+            hostName = hostName.substring(4);
+        }
+        
+        const parts = hostName.split('.');
+        const name = parts.slice(0, -1).join('.');
+        const ext = parts[parts.length - 1];
         
         document.getElementById('domainName').innerHTML =
-            '<span class="text-gray-800">' + name.toUpperCase() + '</span>' +
+            '<span class="text-gray-800">' + name + '</span>' +
             '<span class="text-accent font-medium">.' + ext + '</span>';
             
-        document.getElementById('pageTitle').textContent = name.toUpperCase() + '.' + ext + ' - Domain For Sale - Domain Parking';
+        document.getElementById('pageTitle').textContent = name + '.' + ext + ' - Domain For Sale - Domain Parking';
 
         fetch('log-visitor.php', {
             method: 'POST',
