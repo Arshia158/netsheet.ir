@@ -1,1 +1,106 @@
-hello
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="This Domain name might be for sale. Telegram: https://t.me/meradx">
+    <title id="pageTitle">Domain For Sale - Domain Parking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        'accent': '#10b981',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f8fafc;
+        }
+        
+        .domain-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        
+        .btn {
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .domain-name {
+            letter-spacing: -0.03em;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 md:p-8">
+    <div class="w-full max-w-2xl">
+        <div class="domain-card bg-white rounded-2xl p-8 md:p-10">
+            <div class="mb-8 text-center">
+                <h1 id="domainName" class="text-4xl md:text-6xl font-extrabold tracking-tight domain-name"></h1>
+                <p class="mt-4 text-lg text-gray-500 font-light">This Domain name might be for sale.</p>
+            </div>
+            
+            <div class="h-px bg-gray-100 my-6"></div>
+            
+            <div class="space-y-5">
+                <div class="flex justify-center my-6">
+                    <a href="https://t.me/meradx" target="_blank" rel="noopener noreferrer" 
+                        class="btn flex items-center justify-center bg-[#229ED9] text-white py-3 px-8 rounded-xl text-sm font-medium">
+                        Telegram
+                    </a>
+                </div>
+                
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                    <span class="text-gray-500">Contact Hours:</span>
+                    <span class="font-medium">13:00 - 23:00</span>
+                </div>
+            </div>
+            
+            <div class="h-px bg-gray-100 my-6"></div>
+            
+            <div class="text-center text-gray-400 text-sm font-light">
+                © 2025 All rights reserved.
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const domain = window.location.hostname;
+        const hostName = domain === "localhost" || domain === "127.0.0.1" ? "example.com" : domain;
+        const [name, ext] = hostName.split('.');
+        
+        document.getElementById('domainName').innerHTML =
+            '<span class="text-gray-800">' + name.toUpperCase() + '</span>' +
+            '<span class="text-accent font-medium">.' + ext + '</span>';
+            
+        document.getElementById('pageTitle').textContent = name.toUpperCase() + '.' + ext + ' - Domain For Sale - Domain Parking';
+
+        fetch('log-visitor.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                domain: domain,
+                referrer: document.referrer,
+                userAgent: navigator.userAgent
+            })
+        }).catch(error => console.error('Error logging visitor:', error));
+    </script>
+</body>
+</html>
